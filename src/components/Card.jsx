@@ -4,23 +4,30 @@ import React from 'react';
 const Card = ({ card }) => {
 
     const injectCharacters = text => {
-        // const regex = /([{1}])/g;
-        // const replaced = text.replace(regex, <i className="ms ms-1"></i>);
-
         let charArr = text.split("")
         for (let i=0; i<charArr.length; i++) {
             if (charArr[i] === "{" && charArr[i+1] === "T") {
-                charArr.splice(i, 3, <i className="ms ms-tap"></i>)
+                charArr.splice(i, 3, <i className="text-black p-1 align-top ms ms-tap" key={Math.random()}></i>)
             }
-            else if (charArr[i] === "{" && (charArr[i+1] === "G" || charArr[i+1] === "B" || charArr[i+1] === "U" || charArr[i+1] === "B" || charArr[i+1] === "W"   )) {
-                charArr.splice(i, 3, <i className={`ms ms-${charArr[i+1].toLowerCase()}`}></i>)
+            else if (charArr[i] === "{" && (charArr[i+1] === "G" || charArr[i+1] === "R" 
+            || charArr[i+1] === "U" || charArr[i+1] === "B" || charArr[i+1] === "W")) {
+                charArr.splice(i, 3, <i className={`bg-${charArr[i+1].toLowerCase()}-500 text-black 
+                rounded-full p-1 text-sm align-baseline ms ms-${charArr[i+1].toLowerCase()}`} key={Math.random()}></i>)
+            }
+            else if (charArr[i] === "{" && (charArr[i+1] === "1" || charArr[i+1] === "2" 
+            || charArr[i+1] === "3" || charArr[i+1] === "4" || charArr[i+1] === "5" 
+            || charArr[i+1] === "6" || charArr[i+1] === "7" || charArr[i+1] === "8"  
+            || charArr[i+1] === "9" || charArr[i+1] === "10" || charArr[i+1] === "11" 
+            || charArr[i+1] === "12" || charArr[i+1] === "13" || charArr[i+1] === "14" 
+            || charArr[i+1] === "15" || charArr[i+1] === "16" || charArr[i+1] === "17" 
+            || charArr[i+1] === "18" || charArr[i+1] === "19" || charArr[i+1] === "20"
+            || charArr[i+1] === "X" || charArr[i+1] === "Y" || charArr[i+1] === "Z" || charArr[i+1] === "C")) {
+                charArr.splice(i, 3, <i className={`bg-gray-400 text-black rounded-full p-1 
+                text-sm align-baseline ms ms-${charArr[i+1].toLowerCase()}`} key={Math.random()}></i>)
             }
         }
-        console.log('charArr --> ', charArr);
         return charArr
     }
-
-
 
     return (
         <section className="" style={{ maxWidth: "800px", margin: "20px auto" }}>
@@ -48,7 +55,7 @@ const Card = ({ card }) => {
                             {card.name}
                         </div>
                         <p className="text-sm text-gray-600 flex items-center  mb-3">
-                            {card.type}
+                            <span className="mr-2" >{card.type}</span>{card.manaCost && "|"}<span className="ml-2" >{card.manaCost && injectCharacters(card.manaCost)}</span> 
                         </p>
                         <p className="text-gray-900 text-base">
                             {card.text && injectCharacters(card.text)}
@@ -64,7 +71,15 @@ const Card = ({ card }) => {
                             <div className="text-gray-600 leading-none mx-1" >{card.set}</div>
                         </div>
                         <div className="text-sm">
-                            <p className="text-gray-600 leading-none mx-1">{card.rarity}</p>
+                            {card.rarity === "Mythic" ? (
+                                <p className="bg-mythic-100 text-mythic-700 leading-none mx-1">{card.rarity}</p>
+                            ) : card.rarity === "Rare" ? (
+                                <p className="bg-rare-100 text-rare-700  leading-none mx-1">{card.rarity}</p>
+                            ) : card.rarity === "Uncommon" ? (
+                                <p className="bg-uncommon-100 text-uncommon-700  leading-none mx-1">{card.rarity}</p>
+                            ) : (
+                                <p className="bg-common-100 text-common-700  leading-none mx-1">{card.rarity}</p>
+                            )}
                         </div>
                         <div className="text-sm">
                             <p className="text-gray-600  leading-none mx-1">{card.number}</p>
