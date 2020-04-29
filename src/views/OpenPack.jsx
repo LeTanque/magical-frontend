@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+
+
 const OpenPack = () => {
     const [ cardPack, setCardPack ] = useState({ pack: null, status: null, message: "" });
 
