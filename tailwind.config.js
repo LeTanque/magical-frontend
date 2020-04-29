@@ -149,10 +149,10 @@ module.exports = {
       '64': '16rem',
     },
     backgroundColor: theme => ({
-      // ...theme('colors'),
-      'primary': '#3490dc',
-      'secondary': '#ffed4a',
-      'danger': '#e3342f',
+      ...theme('colors'),
+      // 'primary': '#3490dc',
+      // 'secondary': '#ffed4a',
+      // 'danger': '#e3342f',
     }),
     backgroundPosition: {
       bottom: 'bottom',

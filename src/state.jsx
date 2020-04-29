@@ -3,12 +3,13 @@ import { createGlobalState } from 'react-hooks-global-state';
 const { setGlobalState, useGlobalState } = createGlobalState({
   count: 0,
   currentCard: null,
-  errorMessage: "Systems running OK",
+  message: "Systems running OK",
+  status: "",
   user: {
     username: '',
     password: '',
   },
-  pack: []
+  pack: null,
 });
 
 export const countUp = () => {
@@ -29,6 +30,14 @@ export const setUsername = (username) => {
 
 export const setPassword = (password) => {
     setGlobalState('user', (v) => ({ ...v, password }));
+};
+
+export const setMessage = (message) => {
+    setGlobalState('message', message);
+};
+
+export const setStatus = (status) => {
+    setGlobalState('status', status);
 };
 
 export const setPack = (pack) => {

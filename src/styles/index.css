@@ -4,7 +4,6 @@
 
 @import "tailwindcss/utilities";
 
-html {
-    background-color: #131313;
-    color: #efefef;
-}
+/* @import "./node_modules/mana-font/css/mana.min.css"; */
+
+@import "./mana.css";

@@ -1,45 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
+import { setPack, setStatus, setMessage, useGlobalState } from "../state";
 
-
+import Card from "../components/Card";
 
 const OpenPack = () => {
-    const [ cardPack, setCardPack ] = useState({ pack: null, status: null, message: "" });
+    const [ packArr ] = useGlobalState("pack")
+    const [ status ] = useGlobalState("status")
+    const [ message ] = useGlobalState("message")
 
     const getRandomPack = () => {
-        setCardPack({
-            pack: null,
-            status: "Opening pack...",
-            message: "Searching...",
-        });
+        setStatus("Searching...");
+        setMessage("Opening pack...");
 
         const URL = `https://api.magicthegathering.io/v1/sets/ktk/booster`;
         axios
             .get(URL)
             .then((response) => {
-                console.log('response --> ', response);
-                setCardPack({
-                    pack: response.data.cards,
-                    status: `${response.data.cards.length} cards in pack`,
-                    message: "",
-                });
+                setPack(response.data.cards);
+                setStatus(`${response.data.cards.length} cards in pack`);
+                setMessage("");
             })
             .catch((error) => console.log("getRandomPack error", error));
     };
 
     useEffect(() => {
-        if (!cardPack.pack) getRandomPack()
-    }, [cardPack.pack])
+        if (!packArr) getRandomPack()
+    }, [packArr])
+
+    console.log('packArr --> ', packArr);
 
     return (
         <>
             <div>
-                {cardPack.status ? (
+                {status ? (
                     <>
-                        <h3>STATUS: {cardPack.status}</h3>
-                        {cardPack.message ? (
-                            <h3>MESSAGE: {cardPack.message}</h3>
+                        <h3>STATUS: {status}</h3>
+                        {message ? (
+                            <h3>MESSAGE: {message}</h3>
                         ) : null}
+                        {packArr && packArr.length > 0 && packArr.map(card => (
+                            <Card card={card} key={card.id} />
+                        ))}
                     </>
                 ) : null}
             </div>
