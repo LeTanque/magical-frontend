@@ -331,6 +331,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        "Helvetica",
         'system-ui',
         '-apple-system',
         'BlinkMacSystemFont',

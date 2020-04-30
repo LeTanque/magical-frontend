@@ -3,13 +3,19 @@ import { createGlobalState } from 'react-hooks-global-state';
 const { setGlobalState, useGlobalState } = createGlobalState({
   count: 0,
   currentCard: null,
-  message: "Systems running OK",
-  status: "",
+  message: "",
+  status: "Systems OK",
   user: {
     username: '',
     password: '',
   },
   pack: null,
+  navigation: [
+    { link: "/", name: "Home" },
+    { link: "/dashboard", name: "Dashboard" },
+    { link: "/collection", name: "Collection" },
+    { link: "/random-pack", name: "RPCD" },
+  ]
 });
 
 export const countUp = () => {

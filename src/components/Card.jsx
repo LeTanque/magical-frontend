@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Keyrune } from "@saeris/react-keyrune";
 
 const Card = ({ card }) => {
 
@@ -40,9 +40,16 @@ const Card = ({ card }) => {
                         backgroundSize: "cover",
                         backgroundRepeat: "repeat",
                         backgroundPosition: "center",
-                        transform: "rotate(-10deg) scale(1.3)"
+                        transform: card.imageUrl ? "rotate(-10deg) scale(1.3)" : "none"
                     }} 
-                    title={card.name} >
+                    title={card.name} 
+                >
+                    {!card.imageUrl ? (
+                        <div className="text-gray-400 leading-none mx-1 flex justify-center items-center flex-col h-full" >
+                            <Keyrune set="unglued"  fixed  size="4x" />
+                            Card picture missing
+                        </div>
+                    ) : null}
                 </div>
                 <div className="border-r  border-b  border-gray-400 
                     lg:border-l-0  lg:border-t  lg:border-gray-400 
@@ -55,7 +62,13 @@ const Card = ({ card }) => {
                             {card.name}
                         </div>
                         <p className="text-sm text-gray-600 flex items-center  mb-3">
-                            <span className="mr-2" >{card.type}</span>{card.manaCost && "|"}<span className="ml-2" >{card.manaCost && injectCharacters(card.manaCost)}</span> 
+                            <span className="mr-2" >{card.type}</span>
+                            {card.manaCost ? (
+                                <>
+                                    |<span className="mx-2" >{card.manaCost && injectCharacters(card.manaCost)}</span>
+                                    |<span className="mx-2" >CMC: {card.cmc}</span>
+                                </>
+                            ) : null}
                         </p>
                         <p className="text-gray-900 text-base">
                             {card.text && injectCharacters(card.text)}
@@ -66,32 +79,33 @@ const Card = ({ card }) => {
                             </p>
                         )}
                     </div>
-                    <div className="flex items-center">
-                        <div className="text-sm">
-                            <div className="text-gray-600 leading-none mx-1" >{card.set}</div>
+                    <div className="flex items-center  justify-between">
+                        <div className="text-sm flex">
+                            {card.set ? (
+                                <div className="text-gray-600 leading-none mx-1" >
+                                    <Keyrune set={`${card.set.toLowerCase()}`}  fixed  size="3x" rarity={card.rarity.toLowerCase()} />
+                                </div>
+                            ) : null}
+                            <div className="flex flex-col">
+                                <div className="text-sm">
+                                    <p className="text-gray-600  leading-none mx-1">{card.set}</p>
+                                </div>
+                                <div className="text-sm">
+                                    <p className="text-gray-600  leading-none mx-1">{card.number}</p>
+                                </div>
+                                <div className="text-sm">
+                                    <p className="text-gray-600  leading-none mx-1">{card.rarity}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="text-sm">
-                            {card.rarity === "Mythic" ? (
-                                <p className="bg-mythic-100 text-mythic-700 leading-none mx-1">{card.rarity}</p>
-                            ) : card.rarity === "Rare" ? (
-                                <p className="bg-rare-100 text-rare-700  leading-none mx-1">{card.rarity}</p>
-                            ) : card.rarity === "Uncommon" ? (
-                                <p className="bg-uncommon-100 text-uncommon-700  leading-none mx-1">{card.rarity}</p>
-                            ) : (
-                                <p className="bg-common-100 text-common-700  leading-none mx-1">{card.rarity}</p>
-                            )}
+                        <div className="flex justify-end">
+                            <button className="bg-transparent hover:bg-blue-500 text-blue-700 
+                                font-semibold hover:text-white py-2 px-4 
+                                border border-blue-500 hover:border-transparent rounded"
+                            >
+                                Add to collection
+                            </button>
                         </div>
-                        <div className="text-sm">
-                            <p className="text-gray-600  leading-none mx-1">{card.number}</p>
-                        </div>
-                    </div>
-                    <div className="flex justify-end">
-                        <button className="bg-transparent hover:bg-blue-500 text-blue-700 
-                            font-semibold hover:text-white py-2 px-4 
-                            border border-blue-500 hover:border-transparent rounded"
-                        >
-                            Add to collection
-                        </button>
                     </div>
                 </div>
             </div>
