@@ -11,7 +11,6 @@ const { setGlobalState, useGlobalState } = createGlobalState({
   },
   pack: null,
   navigation: [
-    { link: "/", name: "Home" },
     { link: "/dashboard", name: "Dashboard" },
     { link: "/collection", name: "Collection" },
     { link: "/random-pack", name: "RPCD" },
