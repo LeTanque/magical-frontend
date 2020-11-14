@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import GetPackCards from "../components/GetPackCards";
+import GetPackCards from "/views/components/GetPackCards";
 
 // RPCD
 const RandomPack = () => {

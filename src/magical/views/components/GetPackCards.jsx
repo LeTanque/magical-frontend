@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { setPack, setStatus, setMessage, useGlobalState } from "../state";
+import { setPack, setStatus, setMessage, useGlobalState } from "state/state";
 
 import Card from "./Card";
 

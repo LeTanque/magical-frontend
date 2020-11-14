@@ -1,7 +1,7 @@
 import React from "react";
 import { Keyrune } from "@saeris/react-keyrune";
 import { NavLink } from "react-router-dom";
-import { useGlobalState } from "../../state";
+import { useGlobalState } from "magical/state";
 
 const Footer = () => {
     const [ navitems ] = useGlobalState("navigation");

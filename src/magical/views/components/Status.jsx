@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGlobalState } from "../state";
+import { useGlobalState } from "src/magical/state";
 
 const Status = () => {
     const [ status ] = useGlobalState("status");

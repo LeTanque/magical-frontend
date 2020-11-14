@@ -7,8 +7,8 @@ import Landing from "./views/Landing";
 import RandomPack from "./views/RandomPack";
 import Dashboard from "./views/Dashboard";
 
-import NavigationTop from "./components/NavigationTop";
-import Status from "./components/Status";
+import NavigationTop from "./views/components/NavigationTop";
+import Status from "./views/components/Status";
 
 const Routes = () => {
 

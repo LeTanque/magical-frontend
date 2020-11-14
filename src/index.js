@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/tailwind.css';
-import Routes from './Routes';
+import './magical/styles/tailwind.css';
+import Routes from './magical/Routes.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
